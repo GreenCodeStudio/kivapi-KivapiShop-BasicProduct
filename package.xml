@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<package>
+    <vendor>KivapiShop</vendor>
+    <name>BasicProduct</name>
+    <description>
+        Base ecommerce product package for KivapiShop.
+    </description>
+    <git>https://github.com/GreenCodeStudio/kivapi-KivapiShop-BasicProduct</git>
+    <version>1.0.0</version>
+</package>
