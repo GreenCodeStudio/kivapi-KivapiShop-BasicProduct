@@ -56,6 +56,11 @@
             <type>boolean</type>
             <null>NO</null>
         </column>
+        <column>
+            <name>stamp</name>
+            <type>datetime</type>
+            <null>YES</null>
+        </column>
         <index>
             <type>PRIMARY</type>
             <element>id</element>
