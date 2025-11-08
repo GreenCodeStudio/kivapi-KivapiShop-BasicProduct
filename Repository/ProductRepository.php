@@ -57,7 +57,7 @@ class ProductRepository extends Repository
 //        DB::query("UPDATE article_version SET is_active = (id = ?) WHERE article_id = ?", [$versionId, $id]);
 //    }
     public function getAll(){
-        return DB::get("SELECT kbp.id, kbpv.title, kbpv.price, kbpv.price_currency
+        return DB::get("SELECT kbp.id, kbpv.name, kbpv.price, kbpv.price_currency
 FROM kshop_base_product kbp
 JOIN kshop_base_product_version kbpv on kbp.id = kbpv.kshop_base_product_id
 WHERE kbpv.is_active");
