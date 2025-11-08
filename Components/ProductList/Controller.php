@@ -8,6 +8,9 @@ use KivapiShop\BasicProduct\Repository\ProductRepository;
 
 class Controller extends ComponentController
 {
+    private array $list;
+        private  $productUrl;
+
     public function __construct($params)
     {
         parent::__construct();
