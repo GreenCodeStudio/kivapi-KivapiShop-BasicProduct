@@ -3,4 +3,9 @@
     <p><?= htmlspecialchars($this->version->description) ?></p>
     <?= number_format($this->version->price / 100, 2, ',', ' ') ?>
     <?= $this->version->price_currency ?>
+    <button class="addToCartButton"
+            data-product-id="<?= ($this->version->product_id) ?>"
+            data-product-type="KivapiShop/BasicProduct">
+        Dodaj do koszyka
+    </button>
 </article>

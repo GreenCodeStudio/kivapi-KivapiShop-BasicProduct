@@ -10,7 +10,7 @@ class ProductRepository extends Repository
 {
     public function getCurrentVersion(int $productId)
     {
-        $version = DB::get("SELECT *, kbp.stamp as oryginalStamp FROM kshop_base_product kbp JOIN kshop_base_product_version kbpv ON kbpv.kshop_base_product_id = kbp.id AND kbpv.is_active WHERE kbp.id = ? ORDER BY kbpv.stamp DESC LIMIT 1", [$productId])[0] ?? null;
+        $version = DB::get("SELECT *,kbp.id as product_id, kbp.stamp as oryginalStamp FROM kshop_base_product kbp JOIN kshop_base_product_version kbpv ON kbpv.kshop_base_product_id = kbp.id AND kbpv.is_active WHERE kbp.id = ? ORDER BY kbpv.stamp DESC LIMIT 1", [$productId])[0] ?? null;
         return $version;
     }
 
