@@ -9,6 +9,11 @@
             <autoincrement>YES</autoincrement>
         </column>
         <column>
+            <name>current_version_id</name>
+            <type>int</type>
+            <null>YES</null>
+        </column>
+        <column>
             <name>stamp</name>
             <type>datetime</type>
             <null>YES</null>
@@ -16,6 +21,18 @@
         <index>
             <type>PRIMARY</type>
             <element>id</element>
+        </index>
+
+        <index>
+            <type>INDEX</type>
+            <element>current_version_id</element>
+        </index>
+        <index>
+            <type>FOREIGN</type>
+            <element>current_version_id</element>
+            <reference name="kshop_base_product_version">
+                <element>id</element>
+            </reference>
         </index>
     </table>
     <table>
