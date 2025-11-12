@@ -9,7 +9,8 @@ use KivapiShop\BasicProduct\Repository\ProductRepository;
 class Controller extends ComponentController
 {
     private mixed $id;
-    private mixed $version;
+    public $version;
+    public \Closure $formatCurrency;
 
     public function __construct($params)
     {
@@ -19,6 +20,10 @@ class Controller extends ComponentController
         if(empty($this->version)){
             throw new NotFoundException('Product not found');
         }
+        $this->formatCurrency = function ($amount) {
+            // zgodnie z poprzednim widokiem: przecinek jako separator dziesiętny, spacja tysięcy
+            return number_format($amount / 100, 2, ',', ' ');
+        };
     }
 
     public static function DefinedParameters()
@@ -30,7 +35,7 @@ class Controller extends ComponentController
 
     public function loadView()
     {
-        include __DIR__.'/View.php';
+        $this->loadMPTS(__DIR__.'/View.mpts');
     }
 
 }

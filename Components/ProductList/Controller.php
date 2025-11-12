@@ -8,14 +8,20 @@ use KivapiShop\BasicProduct\Repository\ProductRepository;
 
 class Controller extends ComponentController
 {
-    private array $list;
-        private  $productUrl;
+    public array $list;
+    public $productUrl;
+    public \Closure $formatCurrency;
+    public string $productPath;
 
     public function __construct($params)
     {
         parent::__construct();
+        $this->formatCurrency = function ($amount) {
+            return number_format($amount / 100, 2, ',', ' ');
+        };
         $this->list = (new ProductRepository())->getAll();
         $this->productUrl=(new RouteHelper())->reverseRoute('KivapiShop\BasicProduct', 'Product');
+        $this->productPath = $this->productUrl->path;
     }
 
     public static function DefinedParameters()
@@ -26,6 +32,6 @@ class Controller extends ComponentController
 
     public function loadView()
     {
-        include __DIR__.'/View.php';
+        $this->loadMPTS(__DIR__.'/View.mpts');
     }
 }
