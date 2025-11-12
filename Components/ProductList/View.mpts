@@ -1,0 +1,10 @@
+<div>
+    <:foreach collection=list item=product>
+        <a href=productPath:"?id=":product.id>
+            <article>
+                <h3>{{product.name}}</h3>
+                {{formatCurrency(product.price)}} {{product.price_currency}}
+            </article>
+        </a>
+    </:foreach>
+</div>

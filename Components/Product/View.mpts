@@ -1,0 +1,11 @@
+<article>
+    <h2>{{version.name}}</h2>
+    <p>{{version.description}}</p>
+    {{formatCurrency(version.price)}} {{version.price_currency}}
+    <button class="addToCartButton"
+            data-product-id=version.product_id
+            data-product-type="KivapiShop/BasicProduct">
+        Dodaj do koszyka
+    </button>
+</article>
+
