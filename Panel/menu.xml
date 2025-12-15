@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu>
+    <element>
+        <link>/panel/Package/KivapiShop/BasicProduct/BasicProduct</link>
+        <title>Produkty</title>
+    </element>
+</menu>

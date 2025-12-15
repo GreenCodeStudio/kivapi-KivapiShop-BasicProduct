@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<permissions>
+    <group>
+        <name>KivapiShop_BasicProduct</name>
+        <title>KivapiShop_BasicProduct</title>
+        <permission>
+            <name>show</name>
+            <title>Show</title>
+        </permission>
+        <permission>
+            <name>edit</name>
+            <title>Edit</title>
+        </permission>
+        <permission>
+            <name>add</name>
+            <title>Add</title>
+        </permission>
+        <permission>
+            <name>remove</name>
+            <title>Remove</title>
+        </permission>
+    </group>
+</permissions>
