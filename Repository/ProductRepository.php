@@ -12,8 +12,8 @@ class ProductRepository extends Repository
     public function getCurrentVersion(int $productId)
     {
         $version = DB::get("SELECT *,kbp.id as product_id, kbp.stamp as oryginalStamp FROM kshop_base_product kbp JOIN kshop_base_product_version kbpv ON kbpv.kshop_base_product_id = kbp.id AND kbpv.is_active WHERE kbp.id = ? ORDER BY kbpv.stamp DESC LIMIT 1", [$productId])[0] ?? null;
-        if($version){
-            $version->photos=json_decode($version->photos??'[]');
+        if ($version) {
+            $version->photos = json_decode($version->photos ?? '[]');
         }
         return $version;
     }
@@ -63,13 +63,21 @@ class ProductRepository extends Repository
 
     public function getAll()
     {
-        $items= DB::get("SELECT kbp.id, kbpv.name, kbpv.price, kbpv.price_currency, kbpv.photos
+        $items = DB::get("SELECT kbp.id, kbpv.name, kbpv.price, kbpv.price_currency, kbpv.photos
 FROM kshop_base_product kbp
 JOIN kshop_base_product_version kbpv on kbp.id = kbpv.kshop_base_product_id
 WHERE kbpv.is_active");
         foreach ($items as $item) {
-            $item->photos = json_decode($item->photos??'null', false) ?? [];
+            $item->photos = json_decode($item->photos ?? 'null', false) ?? [];
         }
         return $items;
+    }
+
+    public function getForOrder(array $ids)
+    {
+        return FunQuery::create(DB::get("SELECT kbp.id, kbpv.name, kbpv.price, kbpv.price_currency
+FROM kshop_base_product kbp
+JOIN kshop_base_product_version kbpv on kbp.id = kbpv.kshop_base_product_id
+WHERE kbpv.is_active"))->toAssocArray(fn($x) => $x->id);
     }
 }
