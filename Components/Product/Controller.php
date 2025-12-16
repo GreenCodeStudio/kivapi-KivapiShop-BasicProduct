@@ -4,7 +4,9 @@ namespace KivapiShop\BasicProduct\Components\Product;
 
 use Core\ComponentManager\ComponentController;
 use Core\Exceptions\NotFoundException;
+use Core\File\UploadedFile;
 use KivapiShop\BasicProduct\Repository\ProductRepository;
+use MKrawczyk\FunQuery\FunQuery;
 
 class Controller extends ComponentController
 {
@@ -17,6 +19,7 @@ class Controller extends ComponentController
         parent::__construct();
         $this->id = $params->id;
         $this->version = (new ProductRepository())->getCurrentVersion($params->id);
+        $this->version->photos=FunQuery::create($this->version->photos)->map(fn($p)=>new UploadedFile($p));
         if(empty($this->version)){
             throw new NotFoundException('Product not found');
         }

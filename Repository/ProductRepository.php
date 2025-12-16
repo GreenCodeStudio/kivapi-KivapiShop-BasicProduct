@@ -4,6 +4,7 @@ namespace KivapiShop\BasicProduct\Repository;
 
 use Core\Database\DB;
 use Core\Database\Repository;
+use MKrawczyk\FunQuery\FunQuery;
 
 
 class ProductRepository extends Repository
@@ -11,6 +12,9 @@ class ProductRepository extends Repository
     public function getCurrentVersion(int $productId)
     {
         $version = DB::get("SELECT *,kbp.id as product_id, kbp.stamp as oryginalStamp FROM kshop_base_product kbp JOIN kshop_base_product_version kbpv ON kbpv.kshop_base_product_id = kbp.id AND kbpv.is_active WHERE kbp.id = ? ORDER BY kbpv.stamp DESC LIMIT 1", [$productId])[0] ?? null;
+        if($version){
+            $version->photos=json_decode($version->photos??'[]');
+        }
         return $version;
     }
 

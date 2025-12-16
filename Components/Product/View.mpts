@@ -1,7 +1,14 @@
 <article>
     <h2>{{version.name}}</h2>
-    <p>{{version.description}}</p>
+    <span class="price">
     {{formatCurrency(version.price)}} {{version.price_currency}}
+    </span>
+    <p>{{version.description}}</p>
+    <div class="imageWrapper">
+        <:foreach collection=version.photos item=image >
+            <img src= image.getUrl() >
+        </:foreach>
+    </div>
     <button class="addToCartButton"
             data-product-id=version.product_id
             data-product-type="KivapiShop/BasicProduct">

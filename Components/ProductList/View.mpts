@@ -4,7 +4,7 @@
             <a href= productPath:"?id=":product.id>
                 <article>
                     <h3>{{product.name}}</h3>
-                    {{formatCurrency(product.price)}} {{product.price_currency}}
+                   <span class="price"> {{formatCurrency(product.price)}} {{product.price_currency}}</span>
                     <div class="imageWrapper">
                         <:if condition= product.mainImage>
                             <img src= product.mainImage.getUrl() >
