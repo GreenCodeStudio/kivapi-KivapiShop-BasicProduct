@@ -39,6 +39,7 @@ class ProductService
         $ret['price_currency'] = $data->priceCurrency;
         $ret['description'] = $data->description;
         $ret['stamp'] = new \DateTime();
+        $ret['photos'] = json_encode($data->photos);
         return $ret;
     }
 

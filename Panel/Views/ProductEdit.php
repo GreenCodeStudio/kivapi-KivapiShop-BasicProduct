@@ -22,6 +22,10 @@
                 <input name="priceCurrency">
             </label>
             <label>
+                <span><?= t("KivapiShop.BasicProduct.Panel.Fields.photo") ?></span>
+                <file-uploader name="photos"></file-uploader>
+            </label>
+            <label>
                 <span><?= t("KivapiShop.BasicProduct.Panel.Fields.description") ?></span>
                 <input name="description">
             </label>

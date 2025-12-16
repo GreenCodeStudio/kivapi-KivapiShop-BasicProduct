@@ -1,0 +1,44 @@
+&{
+    max-width: var(--width);
+    margin: auto;
+}
+.productList {
+    display: grid;
+    grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+a {
+    display: block;
+    background: transparent;
+    border-radius: 1em;
+    overflow: hidden;
+    transition: all 300ms ease-out;
+    box-shadow: 0 0 1em -1em rgba(0,0,0,.4);
+    &:hover, &:focus {
+        background: rgba(255,255,255,.1);
+        box-shadow: 0 0 1em rgba(0,0,0,.4);
+        .imageWrapper img {
+            transform: scale(1.1);
+        }
+    }
+    article{
+        display: contents;
+    }
+    h3{
+        margin: 0.5em 0.5em 0 0.5em;
+        padding: 0;
+    }
+    .imageWrapper{
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+        position: relative;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 3000ms ease-out;
+        }
+    }
+}

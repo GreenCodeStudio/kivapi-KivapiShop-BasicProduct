@@ -78,6 +78,11 @@
             <type>datetime</type>
             <null>YES</null>
         </column>
+        <column>
+            <name>photos</name>
+            <type>json</type>
+            <null>YES</null>
+        </column>
         <index>
             <type>PRIMARY</type>
             <element>id</element>

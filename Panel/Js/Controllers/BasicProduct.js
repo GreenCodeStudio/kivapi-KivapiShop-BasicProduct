@@ -11,6 +11,7 @@ import {Document, ParseXmlString} from "pmeditor-core"
 import {Editor} from "pmeditor-editor"
 import {t} from "../../i18n.xml"
 import {t as TCommon} from "../../../../../../Core/Panel/Common/i18n.xml"
+import FileUploader from "../../../../../../Core/Panel/Js/FileUploader";
 
 
 export class index {
@@ -95,13 +96,17 @@ export class add {
 
 export class edit {
     constructor(page, data) {
+        console.log('dddd')
         this.page = page;
         this.data = data;
 
         let form = new FormManager(this.page.querySelector('form'));
         form.load(this.data.Product);
+        void FileUploader
+
 
         form.submit = async formData => {
+            formData.photos=form.form.querySelector('[name="photos"]').value;
             await AjaxPanel.Package.KivapiShop.BasicProduct.BasicProduct.update(formData);
             PanelPageManager.goto('/panel/Package/KivapiShop/BasicProduct/BasicProduct');
         }
