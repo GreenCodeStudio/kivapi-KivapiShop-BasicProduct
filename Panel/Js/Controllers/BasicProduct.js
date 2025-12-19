@@ -81,14 +81,11 @@ export class add {
         this.data = data;
 
         let form = new FormManager(this.page.querySelector('form'));
-        //form.loadSelects(this.data.selects);
-        const content = new Document();
-        const editor = new Editor(content);
-        page.querySelector('.editor-container').append(editor.html);
 
-        form.submit = async data => {
+        form.submit = async formData => {
 
-            await AjaxPanel.Article.insert(data);
+            formData.photos=form.form.querySelector('[name="photos"]').value;
+            await AjaxPanel.Package.KivapiShop.BasicProduct.BasicProduct.insert(formData);
             PanelPageManager.goto('/panel/Package/KivapiShop/BasicProduct/BasicProduct');
         }
     }

@@ -16,7 +16,7 @@ class BasicProductStandardController extends PanelStandardController
     {
         $this->will('KivapiShop_BasicProduct', 'show');
         $this->addView('KivapiShop/BasicProduct', 'ProductList');
-        $this->pushBreadcrumb(['title' => 'Product', 'url' => 'Package/KivapiShop/BasicProduct/BasicProduct']);
+        $this->pushBreadcrumb(['title' => 'Product', 'url' => '/panel/Package/KivapiShop/BasicProduct/BasicProduct']);
 
     }
 
@@ -45,8 +45,8 @@ class BasicProductStandardController extends PanelStandardController
     {
         $this->will('KivapiShop_BasicProduct', 'add');
         $this->addView('KivapiShop/BasicProduct', 'ProductEdit', ['type' => 'add']);
-        $this->pushBreadcrumb(['title' => 'Article', 'url' => '/panel/article']);
-        $this->pushBreadcrumb(['title' => 'Dodaj', 'url' => '/panel/article/add']);
+        $this->pushBreadcrumb(['title' => 'Article', 'url' => '/panel/Package/KivapiShop/BasicProduct/BasicProduct']);
+        $this->pushBreadcrumb(['title' => 'Dodaj', 'url' => '/panel/Package/KivapiShop/BasicProduct/BasicProduct/add']);
     }
 
 }
