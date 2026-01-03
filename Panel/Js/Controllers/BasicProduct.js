@@ -93,13 +93,13 @@ export class add {
 
 export class edit {
     constructor(page, data) {
-        console.log('dddd')
+        void FileUploader
         this.page = page;
         this.data = data;
 
         let form = new FormManager(this.page.querySelector('form'));
         form.load(this.data.Product);
-        void FileUploader
+        form.form.querySelector('[name="photos"]').value=this.data.Product.photos;
 
 
         form.submit = async formData => {

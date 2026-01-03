@@ -42,7 +42,11 @@ class ProductRepository extends Repository
 
     public function getById(int $id)
     {
-        return DB::get("SELECT *,price_currency as priceCurrency, bp.id FROM kshop_base_product bp JOIN kshop_base_product_version bpv ON bpv.kshop_base_product_id = bp.id AND bpv.is_active WHERE bp.id = ?", [$id])[0] ?? null;
+        $ret = DB::get("SELECT *,price_currency as priceCurrency, bp.id FROM kshop_base_product bp JOIN kshop_base_product_version bpv ON bpv.kshop_base_product_id = bp.id AND bpv.is_active WHERE bp.id = ?", [$id])[0] ?? null;
+        if (!empty($ret?->photos)) {
+            $ret->photos = json_decode($ret->photos ?? '[]');
+        }
+        return $ret;
     }
 
     public function defaultTable(): string
