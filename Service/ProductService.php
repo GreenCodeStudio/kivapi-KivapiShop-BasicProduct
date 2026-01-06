@@ -3,6 +3,7 @@
 namespace KivapiShop\BasicProduct\Service;
 
 use KivapiShop\BasicProduct\Repository\ProductRepository;
+use SimpleXMLElement;
 
 class ProductService
 {
@@ -49,5 +50,29 @@ class ProductService
         $filtered['is_active'] = true;
         $versionId = $this->defaultDB->insertVersion($id, $filtered);
         $this->defaultDB->setCurrentVersion($id, $versionId);
+    }
+
+    public function getRss(): SimpleXMLElement
+    {
+        header('content-type: text/xml');
+        $baseUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")."://$_SERVER[HTTP_HOST]";
+        $xml = new SimpleXMLElement('<rss xmlns:g="http://base.google.com/ns/1.0" version="2.0"/>');
+        $channel = $xml->addChild('channel');
+        $channel->addChild('title', 'Product Feed');
+        $channel->addChild('link', $baseUrl.'/');
+        $channel->addChild('description', 'Product feed for Google Merchant');
+        $allProducts = $this->defaultDB->getAll();
+        foreach ($allProducts as $product) {
+            $item = $channel->addChild('item');
+            $item->addChild('g:id', $product->id);
+            $item->addChild('g:title', $product->name);
+//            $item->addChild('g:description', $product->description);
+            $item->addChild('g:link', $baseUrl.'/product?id='.$product->id);
+            $item->addChild('g:price', $product->price.' '.$product->price_currency);
+            if (!empty($product->photos[0])) {
+                $item->addChild('g:image_link', $baseUrl.'/file/'.$product->photos[0]->id);
+            }
+        }
+        return $xml;
     }
 }
