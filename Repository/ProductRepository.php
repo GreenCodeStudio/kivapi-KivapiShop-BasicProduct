@@ -70,7 +70,8 @@ class ProductRepository extends Repository
         $items = DB::get("SELECT kbp.id, kbpv.name, kbpv.price, kbpv.price_currency, kbpv.photos
 FROM kshop_base_product kbp
 JOIN kshop_base_product_version kbpv on kbp.id = kbpv.kshop_base_product_id
-WHERE kbpv.is_active");
+WHERE kbpv.is_active
+ORDER BY kbpv.price ASC");
         foreach ($items as $item) {
             $item->photos = json_decode($item->photos ?? 'null', false) ?? [];
         }
