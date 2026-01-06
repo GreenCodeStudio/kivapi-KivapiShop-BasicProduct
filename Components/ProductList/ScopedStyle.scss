@@ -5,19 +5,20 @@
 .productList {
     display: grid;
     grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));
-    gap: 16px;
+    gap: 32px 16px;
 }
 
 a {
     display: flex;
     flex-direction: column;
-    background: transparent;
     border-radius: 1em;
     overflow: hidden;
     transition: all 300ms ease-out;
     box-shadow: 0 0 1em -1em rgba(0,0,0,.4);
+    background: #ffffff14;
+
     &:hover, &:focus {
-        background: rgba(255,255,255,.1);
+        background: rgba(255,255,255,.15);
         box-shadow: 0 0 1em rgba(0,0,0,.4);
         .imageWrapper img {
             transform: scale(1.1);
