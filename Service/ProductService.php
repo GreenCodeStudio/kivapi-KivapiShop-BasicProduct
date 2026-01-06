@@ -76,6 +76,8 @@ class ProductService
 
             $item->addChild('availability', 'preorder', $ns);
             $item->addChild('availability_date', (new \DateTime('+14 days'))->format(DATE_ATOM), $ns);
+            $item->addChild('condition', 'new', $ns);
+            $item->addChild('brand', 'GCS', $ns);
         }
         return $xml;
     }
