@@ -56,7 +56,7 @@ class ProductService
     {
         header('content-type: text/xml');
         $baseUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")."://$_SERVER[HTTP_HOST]";
-        $ns="http://base.google.com/ns/1.0";
+        $ns = "http://base.google.com/ns/1.0";
         $xml = new SimpleXMLElement('<rss xmlns:g="http://base.google.com/ns/1.0" version="2.0"/>');
         $channel = $xml->addChild('channel');
         $channel->addChild('title', 'Product Feed');
@@ -69,7 +69,7 @@ class ProductService
             $item->addChild('title', $product->name, $ns);
             $item->addChild('description', $product->description, $ns);
             $item->addChild('link', $baseUrl.'/product?id='.$product->id, $ns);
-            $item->addChild('price', $product->price.' '.$product->price_currency, $ns);
+            $item->addChild('price', ($product->price / 100).' '.$product->price_currency, $ns);
             if (!empty($product->photos[0])) {
                 $item->addChild('image_link', $baseUrl.'/file/'.$product->photos[0]->id, $ns);
             }

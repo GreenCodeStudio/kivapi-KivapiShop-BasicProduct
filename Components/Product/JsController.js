@@ -7,6 +7,17 @@ export default class {
             b.onclick = async () => {
                 await this.getCartId()
                 Ajax.KivapiShop.Order.Cart.addToCart(b.dataset.productType, b.dataset.productId, 1);
+                try{
+                    fbq('track', 'AddToCart', {
+                        content_ids:  b.dataset.productId, // Use GTM variable for dynamic ID
+                        content_name: '{{Product Name}}', // Use GTM variable
+                        content_type: 'product',
+                        // value: '', // Use GTM variable for price
+                    // currency: 'USD'
+                });
+                }catch (_){
+                    //ignore
+                }
             }
         })
     }
