@@ -23,7 +23,7 @@ class ProductRepository extends Repository
         $start = (int)$options->start;
         $limit = (int)$options->limit;
         $sqlOrder = $this->getOrderSQL($options);
-        $rows = DB::get("SELECT bp.*, bpv.name, bpv.price, bpv.price_currency as priceCurrency FROM kshop_base_product bp JOIN kshop_base_product_version bpv ON bpv.kshop_base_product_id = bp.id AND bpv.is_active $sqlOrder LIMIT $start,$limit");
+        $rows = DB::get("SELECT bp.*, bpv.name, bpv.price, bpv.price_currency as priceCurrency FROM kshop_base_product bp JOIN kshop_base_product_version bpv ON bpv.id = bp.current_version_id AND bpv.is_active $sqlOrder LIMIT $start,$limit");
         $total = DB::get("SELECT count(*) as count FROM kshop_base_product")[0]->count;
         return ['rows' => $rows, 'total' => $total];
     }
@@ -62,7 +62,7 @@ class ProductRepository extends Repository
 
     public function setCurrentVersion(int $id, int $versionId)
     {
-        DB::query("UPDATE kshop_base_product_version SET is_active = (id = ?) WHERE kshop_base_product_id = ?", [$versionId, $id]);
+        DB::query("UPDATE kshop_base_product SET current_version_id= ? WHERE id = ?", [$versionId, $id]);
     }
 
     public function getAll()
