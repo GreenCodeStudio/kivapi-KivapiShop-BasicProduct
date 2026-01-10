@@ -5,8 +5,6 @@ export default class {
         console.log('basic product js');
         document.querySelectorAll('.addToCartButton').forEach(b => {
             b.onclick = async () => {
-                await this.getCartId()
-                Ajax.KivapiShop.Order.Cart.addToCart(b.dataset.productType, b.dataset.productId, 1);
                 try {
                     fbq('track', 'AddToCart', {
                         content_ids: b.dataset.productId, // Use GTM variable for dynamic ID
@@ -33,6 +31,10 @@ export default class {
                 } catch (_) {
                     //ignore
                 }
+
+                await this.getCartId()
+                await Ajax.KivapiShop.Order.Cart.addToCart(b.dataset.productType, b.dataset.productId, 1);
+                document.location='/cart';
             }
 
         })
